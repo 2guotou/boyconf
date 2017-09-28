@@ -51,9 +51,12 @@ func main(){
     //will Print: &{A: false B: "" C:{c3: "ccc3"} D: map[d1:{e2:"eeee2" d2:{e3: "eee3"}}] F: ["f3"] }
     fmt.Printf("%+v, %v", Cnf, err)
     
-    //You Can Change Your Config File, Reload Has 5 Seconds Latency
-    //For Example: change product.D.d1.e2 = "eeeeeeeeeeeeeeeee2"
     time.Sleep(20 * time.Second)
+    //When Sleeping, You Can Change Your Config File
+    //For Example: change product.D.d1.e2 = "eeeeeeeeeeeeeeeee2"
+    //Reload Has 5 Seconds Latency, Then Print: 
+    // I am trigger1, I will do sth.
+    // I am trigger2, I will run sth.
 
     //will Print: &{A: false B: "" C:{c3: "ccc3"} D: map[d1:{e2:"eeeeeeeeeeeeeeeee2" d2:{e3: "eee3"}}] F: ["f3"] }
     fmt.Printf("%+v", Cnf)
