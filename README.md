@@ -32,31 +32,31 @@ var Cnf = new(Conf)
 func main(){
 
     boy := &boyconf.Boy{
-		File:       "path/to/test.conf",      //Config File Path
-		Config:     Cnf,                      //The Global Config Variable
-		Env:        []string{"product","en"}, //The Right Env Alway Has High Priority
-		AutoReload: true,                     //Support Auto load, Default == false
-	}
+        File:       "path/to/test.conf",      //Config File Path
+        Config:     Cnf,                      //The Global Config Variable
+        Env:        []string{"product","en"}, //The Right Env Alway Has High Priority
+        AutoReload: true,                     //Support Auto load, Default == false
+    }
 
     trigger1 := func() {
-		fmt.Println("I am trigger1, I will do sth.")
-	}
+        fmt.Println("I am trigger1, I will do sth.")
+    }
 
     trigger2 := func() {
-		fmt.Println("I am trigger2, I will run sth.")
-	}
+        fmt.Println("I am trigger2, I will run sth.")
+    }
 
     err := boyconf.Init(boy, trigger1, trigger2)
 
     //will Print: &{A: false B: "" C:{c3: "ccc3"} D: map[d1:{e2:"eeee2" d2:{e3: "eee3"}}] F: ["f3"] }
-	fmt.Printf("%+v, %v", Cnf, err)
-	
+    fmt.Printf("%+v, %v", Cnf, err)
+    
     //You Can Change Your Config File, Reload Has 5 Seconds Latency
     //For Example: change product.D.d1.e2 = "eeeeeeeeeeeeeeeee2"
     time.Sleep(20 * time.Second)
 
     //will Print: &{A: false B: "" C:{c3: "ccc3"} D: map[d1:{e2:"eeeeeeeeeeeeeeeee2" d2:{e3: "eee3"}}] F: ["f3"] }
-	fmt.Printf("%+v", Cnf)
+    fmt.Printf("%+v", Cnf)
 }
 ```
 
